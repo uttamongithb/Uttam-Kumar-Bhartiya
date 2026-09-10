@@ -9,34 +9,7 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-landing",
-      "settings": {
-        "nav_tagline": "Find the ideal gift for your loved ones.",
-        "nav_button": "Choose Gift",
-        "heading": "The Gift Guide",
-        "subheading": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
-        "hero_button": "Shop Now",
-        "sub_bar_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
-        "wild_title": "Tisso vison in the wild",
-        "curated_products": [],
-        "collection": "frontpage",
-        "mobile_lede": "Discover Joy: Your Ultimate Holiday Gift Destination.",
-        "mobile_sus": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
-        "menu_brand": "Tisso Vison",
-        "default_name": "Orange Wide Leg",
-        "default_price": "980,00€",
-        "default_description": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.",
-        "qv_color_label": "Color",
-        "qv_color_1": "White",
-        "qv_color_2": "Black",
-        "qv_size_label": "Size",
-        "qv_size_placeholder": "Choose your size",
-        "qv_cart_label": "ADD TO CART"
-      }
-    }
+    "main": { "type": "main-landing", "settings": {} }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
