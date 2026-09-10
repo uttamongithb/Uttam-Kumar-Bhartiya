@@ -115,22 +115,20 @@
 
   /* ---------- hero ---------- */
   .hero { position: relative; width: 1440px; height: 780px; background: #fff; }
-  .hero .frame-a { position: absolute; left: 0; top: 0; width: 1440px; height: 390px; pointer-events: none; }
-  .hero .frame-b { position: absolute; left: 550px; top: 378px; width: 890px; height: 402px; pointer-events: none; }
+  .hero .frame-a { position: absolute; left: 0; top: 0; width: 1440px; height: 390px; }
+  .hero .frame-b { position: absolute; left: 550px; top: 378px; width: 890px; height: 402px; }
   .hero h1 {
     position: absolute; left: 67px; top: 425px;
     font-family: 'Jost', 'Segoe UI', system-ui, sans-serif;
     font-weight: 500; font-size: 70px; line-height: 1; color: #000;
     white-space: nowrap;
-    z-index: 2;
   }
   .hero .lede {
     position: absolute; left: 67px; top: 545px; width: 483px;
     font-family: 'Jost', 'Segoe UI', system-ui, sans-serif;
     font-weight: 400; font-size: 20px; line-height: 1.4; color: #000;
-    z-index: 2;
   }
-  .hero .cta--hero { left: 67px; top: 679px; z-index: 2; }
+  .hero .cta--hero { left: 67px; top: 679px; }
 
   /* ---------- products (desktop) ---------- */
   .shop { width: 1337px; margin: 0 auto; padding-top: 64px; }
