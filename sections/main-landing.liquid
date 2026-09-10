@@ -1,0 +1,339 @@
+{%- assign s = section.settings -%}
+{%- assign col = s.collection -%}
+{%- assign prods = col.products -%}
+{%- assign nav_tagline = s.nav_tagline | default: 'Find the ideal gift for your loved ones.' -%}
+{%- assign nav_button = s.nav_button | default: 'Choose Gift' -%}
+{%- assign heading = s.heading | default: 'The Gift Guide' -%}
+{%- assign subheading = s.subheading | default: 'Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.' -%}
+{%- assign hero_button = s.hero_button | default: 'Shop Now' -%}
+{%- assign sub_bar_text = s.sub_bar_text | default: 'SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL' -%}
+{%- assign wild_title = s.wild_title | default: 'Tisso vison in the wild' -%}
+{%- assign mobile_lede = s.mobile_lede | default: 'Discover Joy: Your Ultimate Holiday Gift Destination.' -%}
+{%- assign mobile_sus = s.mobile_sus | default: 'SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR' -%}
+{%- assign menu_brand = s.menu_brand | default: 'Tisso Vison' -%}
+{%- assign qv_color_label = s.qv_color_label | default: 'Color' -%}
+{%- assign qv_color_1 = s.qv_color_1 | default: 'White' -%}
+{%- assign qv_color_2 = s.qv_color_2 | default: 'Black' -%}
+{%- assign qv_size_label = s.qv_size_label | default: 'Size' -%}
+{%- assign qv_size_placeholder = s.qv_size_placeholder | default: 'Choose your size' -%}
+{%- assign qv_cart_label = s.qv_cart_label | default: 'ADD TO CART' -%}
+{%- assign def_name = s.default_name | default: 'Orange Wide Leg' -%}
+{%- assign def_price = s.default_price | default: '980,00€' -%}
+{%- assign def_desc = s.default_description | default: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.' -%}
+
+<div id="desktopView">
+  <div id="fitwrap">
+    <div id="stage">
+
+      <!-- ============ navbar: logo left / text center / choose gift right ============ -->
+      <div class="bar bar--static">
+        <div class="nav-left">
+          <img class="logo-mark" src="{{ 'logo-mark.svg' | asset_url }}" alt="Tisso logo">
+          <img class="logo-word" src="{{ 'logo-word.svg' | asset_url }}" alt="">
+        </div>
+        <p class="nav-center">{{ nav_tagline | escape }}</p>
+        <div class="nav-right">
+          <button class="cta cta--top cta--yellow cta--nav" type="button" aria-label="{{ nav_button | escape }}">
+            <span class="st st--yellow"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line17.svg' | asset_url }}" alt=""></span>
+            <span class="st st--dark"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ hero ============ -->
+      <section class="hero">
+        {%- if s.hero_desktop_image -%}
+          <img class="frame-a" src="{{ s.hero_desktop_image | image_url: width: 2880 }}" alt="" width="1440" height="780">
+        {%- else -%}
+          <img class="frame-a" src="{{ 'frame.svg' | asset_url }}" alt="">
+        {%- endif -%}
+        {%- if s.hero_overlay_image -%}
+          <img class="frame-b" src="{{ s.hero_overlay_image | image_url: width: 1780 }}" alt="" width="890" height="402">
+        {%- else -%}
+          <img class="frame-b" src="{{ 'frame1.svg' | asset_url }}" alt="">
+        {%- endif -%}
+        <h1>{{ heading | escape }}</h1>
+        <p class="lede">{{ subheading | escape }}</p>
+        <button class="cta cta--dark cta--hero" type="button" aria-label="{{ hero_button | escape }}">
+          <span class="st st--dark"><span class="lbl">{{ hero_button | escape }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
+          <span class="st st--yellow"><span class="lbl">{{ hero_button | escape }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+        </button>
+      </section>
+
+      <!-- ============ sub bar: static centered text ============ -->
+      <div class="bar bar--sub-static">
+        <p>{{ sub_bar_text | escape }}</p>
+      </div>
+
+      <!-- ============ shoppable gallery ============ -->
+      <section class="shop">
+        <h2>{{ wild_title | escape }}</h2>
+        <div class="cards">
+          {%- for idx in (0..5) -%}
+            {%- render 'gg-card', idx: idx, prod: prods[idx], mode: 'desktop', def_name: def_name, def_price: def_price, def_desc: def_desc -%}
+          {%- endfor -%}
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<div id="mobileView">
+
+  <!-- navbar: left menu button + centered brand logo -->
+  <header class="m-bar">
+    <button class="m-menu" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <div class="m-bar-logo">
+      <img class="logo-mark" src="{{ 'logo-mark.svg' | asset_url }}" alt="Tisso logo">
+      <img class="logo-word" src="{{ 'logo-word.svg' | asset_url }}" alt="">
+    </div>
+  </header>
+
+  <main class="m-main">
+    <h1 class="m-title">{{ heading | escape }}</h1>
+    <p class="m-lede">{{ mobile_lede | escape }}</p>
+    <div class="m-hero-img">
+      {%- if s.hero_mobile_image -%}
+        <img class="m-frame" src="{{ s.hero_mobile_image | image_url: width: 1125 }}" alt="" width="375" height="264">
+      {%- else -%}
+        <img class="m-frame" src="{{ 'hero-mobile.jpg' | asset_url }}" alt="">
+      {%- endif -%}
+      <button class="cta cta--dark cta--m" type="button" aria-label="{{ hero_button | escape }}">
+        <span class="st st--dark"><span class="lbl">{{ hero_button | escape }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
+        <span class="st st--yellow"><span class="lbl">{{ hero_button | escape }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+      </button>
+    </div>
+    <p class="m-sus">{{ mobile_sus | escape }}</p>
+
+    <h2 class="m-tisso">{{ wild_title | escape }}</h2>
+    <div class="m-cards">
+      {%- for idx in (0..5) -%}
+        {%- render 'gg-card', idx: idx, prod: prods[idx], mode: 'mobile', def_name: def_name, def_price: def_price, def_desc: def_desc -%}
+      {%- endfor -%}
+    </div>
+
+  </main>
+
+<!-- menu drawer -->
+  <div class="m-menu-panel" id="mMenu">
+    <div class="m-menu-bar">
+      <button class="m-close" type="button" aria-label="Close menu"><svg viewBox="0 0 22 22"><path d="M2 2 L20 20 M20 2 L2 20" stroke="#000" stroke-width="2" fill="none"/></svg></button>
+      <span class="m-menu-title">{{ menu_brand | escape }}</span>
+    </div>
+    <div class="m-menu-body">
+      <p>{{ nav_tagline | escape }}</p>
+      <button class="cta cta--yellow cta--menu" type="button" aria-label="{{ nav_button | escape }}">
+        <span class="st st--yellow"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+  <!-- product quick view -->
+  <div class="m-qv" id="mQv">
+    <button class="m-close" type="button" aria-label="Close product view"><svg viewBox="0 0 22 22"><path d="M2 2 L20 20 M20 2 L2 20" stroke="#000" stroke-width="2" fill="none"/></svg></button>
+    <div class="m-qv-top">
+      <img id="mQvImg" src="{{ 'image822.png' | asset_url }}" alt="Product photo">
+      <div>
+        <h3 class="m-qv-name">{{ def_name | escape }}</h3>
+        <p class="m-qv-price">{{ def_price | escape }}</p>
+        <p class="m-qv-desc">{{ def_desc | strip_html | truncate: 220 }}</p>
+      </div>
+    </div>
+    <p class="m-qv-lbl">{{ qv_color_label | escape }}</p>
+    <div class="m-qv-colors">
+      <button type="button">{{ qv_color_1 | escape }}</button>
+      <button type="button">{{ qv_color_2 | escape }}</button>
+    </div>
+    <p class="m-qv-lbl">{{ qv_size_label | escape }}</p>
+    <button class="m-qv-size" type="button">
+      <span class="txt">{{ qv_size_placeholder | escape }}</span>
+      <span class="chev"><svg viewBox="0 0 16 10" width="16" height="10"><path d="M1 1 L8 8 L15 1" stroke="#000" stroke-width="2" fill="none"/></svg></span>
+    </button>
+    <div class="m-qv-sizes" id="mQvSizes">
+      <button type="button">XS</button>
+      <button type="button">S</button>
+      <button type="button">M</button>
+      <button type="button">L</button>
+      <button type="button">XL</button>
+    </div>
+    <button class="m-qv-cart" type="button">{{ qv_cart_label | escape }} <img src="{{ 'line16.svg' | asset_url }}" alt=""></button>
+  </div>
+<script src="{{ 'gift-guide.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Gift Guide Landing",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "text",
+      "id": "nav_tagline",
+      "label": "Tagline (navbar + menu drawer)",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "nav_button",
+      "label": "Navbar button label",
+      "default": "Choose Gift"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading (desktop)",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "hero_button",
+      "label": "Hero button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_desktop_image",
+      "label": "Hero background (desktop)",
+      "info": "Optional — defaults to the built-in design image. Use a 1440 × 780 image."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_overlay_image",
+      "label": "Hero overlay photo (desktop)",
+      "info": "Optional — defaults to the built-in model photo. Use an 890 × 402 image."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_mobile_image",
+      "label": "Hero image (mobile)",
+      "info": "Optional — defaults to the built-in design image. Use a 375 × 264 image."
+    },
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "text",
+      "id": "sub_bar_text",
+      "label": "Bar text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    },
+    {
+      "type": "header",
+      "content": "Gallery"
+    },
+    {
+      "type": "text",
+      "id": "wild_title",
+      "label": "Gallery heading",
+      "default": "Tisso vison in the wild"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Product collection (optional)",
+      "info": "If set, the six cards use its first six products; otherwise the design images and the default quick-view text below are shown."
+    },
+    {
+      "type": "header",
+      "content": "Mobile copy"
+    },
+    {
+      "type": "text",
+      "id": "mobile_lede",
+      "label": "Mobile subheading",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+    },
+    {
+      "type": "text",
+      "id": "mobile_sus",
+      "label": "Mobile activewear bar text",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+    },
+    {
+      "type": "text",
+      "id": "menu_brand",
+      "label": "Menu drawer brand name",
+      "default": "Tisso Vison"
+    },
+    {
+      "type": "header",
+      "content": "Quick view (default / no collection)"
+    },
+    {
+      "type": "text",
+      "id": "default_name",
+      "label": "Product name",
+      "default": "Orange Wide Leg"
+    },
+    {
+      "type": "text",
+      "id": "default_price",
+      "label": "Product price",
+      "default": "980,00€"
+    },
+    {
+      "type": "textarea",
+      "id": "default_description",
+      "label": "Product description",
+      "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief."
+    },
+    {
+      "type": "text",
+      "id": "qv_color_label",
+      "label": "Color label",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "qv_color_1",
+      "label": "Color option 1",
+      "default": "White"
+    },
+    {
+      "type": "text",
+      "id": "qv_color_2",
+      "label": "Color option 2",
+      "default": "Black"
+    },
+    {
+      "type": "text",
+      "id": "qv_size_label",
+      "label": "Size label",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "qv_size_placeholder",
+      "label": "Size button placeholder",
+      "default": "Choose your size"
+    },
+    {
+      "type": "text",
+      "id": "qv_cart_label",
+      "label": "Cart button label",
+      "default": "ADD TO CART"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Guide Landing"
+    }
+  ]
+}
+{% endschema %}
