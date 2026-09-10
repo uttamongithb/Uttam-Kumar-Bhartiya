@@ -1,4 +1,4 @@
-{%- assign s = settings -%}
+{%- assign s = section.settings -%}
 {%- assign col = s.collection -%}
 {%- assign curated_size = s.curated_products | size | default: 0 -%}
 {%- if curated_size > 0 -%}
@@ -171,6 +171,176 @@
 {% schema %}
 {
   "name": "Gift Guide Landing",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "text",
+      "id": "nav_tagline",
+      "label": "Tagline (navbar + menu drawer)",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "nav_button",
+      "label": "Navbar button label",
+      "default": "Choose Gift"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading (desktop)",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "hero_button",
+      "label": "Hero button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_desktop_image",
+      "label": "Hero background (desktop)",
+      "info": "Optional — defaults to the built-in design image. Use a 1440 x 780 image."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_overlay_image",
+      "label": "Hero overlay photo (desktop)",
+      "info": "Optional — defaults to the built-in model photo. Use an 890 x 402 image."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_mobile_image",
+      "label": "Hero image (mobile)",
+      "info": "Optional — defaults to the built-in design image. Use a 375 x 264 image."
+    },
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "text",
+      "id": "sub_bar_text",
+      "label": "Bar text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    },
+    {
+      "type": "header",
+      "content": "Gallery — Tisso vison in the wild"
+    },
+    {
+      "type": "text",
+      "id": "wild_title",
+      "label": "Gallery heading",
+      "default": "Tisso vison in the wild"
+    },
+    {
+      "type": "product_list",
+      "id": "curated_products",
+      "label": "Curated products (optional)",
+      "info": "Hand-pick up to 6 imported products for the cards, in order. If empty, the first 6 products of the collection below are used."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Product collection (optional)",
+      "info": "Used when no curated products are picked. Its first 6 products fill the cards; otherwise the design images and default quick-view text are shown."
+    },
+    {
+      "type": "header",
+      "content": "Mobile copy"
+    },
+    {
+      "type": "text",
+      "id": "mobile_lede",
+      "label": "Mobile subheading",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+    },
+    {
+      "type": "text",
+      "id": "mobile_sus",
+      "label": "Mobile activewear bar text",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+    },
+    {
+      "type": "text",
+      "id": "menu_brand",
+      "label": "Menu drawer brand name",
+      "default": "Tisso Vison"
+    },
+    {
+      "type": "header",
+      "content": "Quick view (default / no products)"
+    },
+    {
+      "type": "text",
+      "id": "default_name",
+      "label": "Product name",
+      "default": "Orange Wide Leg"
+    },
+    {
+      "type": "text",
+      "id": "default_price",
+      "label": "Product price",
+      "default": "980,00€"
+    },
+    {
+      "type": "textarea",
+      "id": "default_description",
+      "label": "Product description",
+      "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief."
+    },
+    {
+      "type": "text",
+      "id": "qv_color_label",
+      "label": "Color label",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "qv_color_1",
+      "label": "Color option 1",
+      "default": "White"
+    },
+    {
+      "type": "text",
+      "id": "qv_color_2",
+      "label": "Color option 2",
+      "default": "Black"
+    },
+    {
+      "type": "text",
+      "id": "qv_size_label",
+      "label": "Size label",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "qv_size_placeholder",
+      "label": "Size button placeholder",
+      "default": "Choose your size"
+    },
+    {
+      "type": "text",
+      "id": "qv_cart_label",
+      "label": "Cart button label",
+      "default": "ADD TO CART"
+    }
+  ],
   "presets": [
     {
       "name": "Gift Guide Landing"

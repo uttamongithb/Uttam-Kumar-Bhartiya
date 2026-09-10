@@ -1,5 +1,5 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: #fff; overflow-x: hidden; }
+  html, body { background: var(--gg-bg, #fff); overflow-x: hidden; }
   body { -webkit-font-smoothing: antialiased; }
   .f-jost { font-family: 'Jost', 'Segoe UI', system-ui, sans-serif; }
   .f-lustria { font-family: 'Lustria', Georgia, serif; }
@@ -98,8 +98,8 @@
     transition: transform .28s ease;
   }
   .cta--top .st img.arr { left: 77.8%; width: 25.5px; }
-  .st--dark { background: #000; color: #fff; }
-  .st--yellow { background: #fff544; color: #000; }
+  .st--dark { background: var(--gg-ink, #000); color: var(--gg-bg, #fff); }
+  .st--yellow { background: var(--gg-accent, #fff544); color: var(--gg-ink, #000); }
   .cta--dark  .st--dark   { opacity: 1; }
   .cta--dark  .st--yellow { opacity: 0; }
   .cta--dark:hover  .st--dark   { opacity: 0; }
@@ -282,7 +282,7 @@
     display: flex; align-items: center; justify-content: center;
   }
   .m-qv-cart {
-    margin: 30px 0 12px; width: 100%; background: #000; color: #fff; border: 0;
+    margin: 30px 0 12px; width: 100%; background: var(--gg-ink, #000); color: var(--gg-bg, #fff); border: 0;
     padding: 17px 20px; cursor: pointer;
     font-family: 'Jost', 'Segoe UI', system-ui, sans-serif; font-weight: 500;
     font-size: 16px; letter-spacing: .12em;
