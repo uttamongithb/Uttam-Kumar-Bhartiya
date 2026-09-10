@@ -15,7 +15,7 @@
 {%- endif -%}
 {%- assign cdesc = prod.description | strip_html | truncate: 160 -%}
 {%- if cdesc == blank -%}{%- assign cdesc = def_desc -%}{%- endif -%}
-<div class="{{ cls }}" data-name="{{ prod.title | escape }}" data-price="{{ prod.price | money | escape }}"{% if cdesc != blank %} data-desc="{{ cdesc | escape }}"{% endif %}>
+<div class="{{ cls }}" data-name="{{ prod.title | escape }}" data-price="{{ prod.price | money | escape }}" data-variant-id="{{ prod.selected_or_first_available_variant.id }}"{% if cdesc != blank %} data-desc="{{ cdesc | escape }}"{% endif %}>
   {%- if prod.featured_image -%}
     {{ prod.featured_image | image_url: width: 900 | image_tag: class: 'photo', loading: 'lazy', alt: prod.featured_image.alt | default: prod.title }}
   {%- else -%}

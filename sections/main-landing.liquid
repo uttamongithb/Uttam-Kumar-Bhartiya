@@ -42,6 +42,10 @@
             <span class="st st--yellow"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line17.svg' | asset_url }}" alt=""></span>
             <span class="st st--dark"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
           </button>
+          <button class="cart-btn" type="button" data-cart-open aria-label="Open cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1.2 12H7.2L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            <span class="cart-count" data-cart-count>0</span>
+          </button>
         </div>
       </div>
 
@@ -93,6 +97,10 @@
       <img class="logo-mark" src="{{ 'logo-mark.svg' | asset_url }}" alt="Tisso logo">
       <img class="logo-word" src="{{ 'logo-word.svg' | asset_url }}" alt="">
     </div>
+    <button class="cart-btn m-cart-btn" type="button" data-cart-open aria-label="Open cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1.2 12H7.2L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="cart-count" data-cart-count>0</span>
+    </button>
   </header>
 
   <main class="m-main">
@@ -130,6 +138,7 @@
       <p>{{ nav_tagline | escape }}</p>
       <button class="cta cta--yellow cta--menu" type="button" aria-label="{{ nav_button | escape }}">
         <span class="st st--yellow"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+        <span class="st st--dark"><span class="lbl">{{ nav_button | escape }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
       </button>
     </div>
   </div>
@@ -166,6 +175,18 @@
       <button type="button">XL</button>
     </div>
     <button class="m-qv-cart" type="button">{{ qv_cart_label | escape }} <img src="{{ 'line16.svg' | asset_url }}" alt=""></button>
+    </div>
+  </div>
+
+  <!-- cart drawer -->
+  <div class="m-cart" id="mCart">
+    <div class="m-cart-box">
+      <button class="m-close" type="button" data-cart-close aria-label="Close cart"><svg viewBox="0 0 22 22"><path d="M2 2 L20 20 M20 2 L2 20" stroke="#000" stroke-width="2" fill="none"/></svg></button>
+      <h3 class="m-cart-title">Your Cart</h3>
+      <div id="mCartItems"></div>
+      <p class="m-cart-empty" id="mCartEmpty" hidden>Your cart is empty.</p>
+      <div class="m-cart-foot"><span>Subtotal</span><span id="mCartTotal"></span></div>
+      <a class="m-qv-cart m-cart-checkout" href="/checkout">CHECKOUT <img src="{{ 'line16.svg' | asset_url }}" alt=""></a>
     </div>
   </div>
 <script src="{{ 'gift-guide.js' | asset_url }}" defer="defer"></script>
