@@ -74,8 +74,8 @@
       <section class="shop">
         <h2>{{ wild_title | escape }}</h2>
         <div class="cards">
-          {%- for idx in (0..5) -%}
-            {%- render 'gg-card', idx: idx, prod: prods[idx], mode: 'desktop', def_name: def_name, def_price: def_price, def_desc: def_desc -%}
+          {%- for prod in prods limit: 6 -%}
+            {%- render 'gg-card', idx: forloop.index0, prod: prod, mode: 'desktop', def_desc: def_desc -%}
           {%- endfor -%}
         </div>
       </section>
@@ -113,8 +113,8 @@
 
     <h2 class="m-tisso">{{ wild_title | escape }}</h2>
     <div class="m-cards">
-      {%- for idx in (0..5) -%}
-        {%- render 'gg-card', idx: idx, prod: prods[idx], mode: 'mobile', def_name: def_name, def_price: def_price, def_desc: def_desc -%}
+      {%- for prod in prods limit: 6 -%}
+        {%- render 'gg-card', idx: forloop.index0, prod: prod, mode: 'mobile', def_desc: def_desc -%}
       {%- endfor -%}
     </div>
 
@@ -138,9 +138,10 @@
 
   <!-- product quick view -->
   <div class="m-qv" id="mQv">
+    <div class="m-qv-box">
     <button class="m-close" type="button" aria-label="Close product view"><svg viewBox="0 0 22 22"><path d="M2 2 L20 20 M20 2 L2 20" stroke="#000" stroke-width="2" fill="none"/></svg></button>
     <div class="m-qv-top">
-      <img id="mQvImg" src="{{ 'image822.png' | asset_url }}" alt="Product photo">
+      <img id="mQvImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Product photo">
       <div>
         <h3 class="m-qv-name">{{ def_name | escape }}</h3>
         <p class="m-qv-price">{{ def_price | escape }}</p>
@@ -165,6 +166,7 @@
       <button type="button">XL</button>
     </div>
     <button class="m-qv-cart" type="button">{{ qv_cart_label | escape }} <img src="{{ 'line16.svg' | asset_url }}" alt=""></button>
+    </div>
   </div>
 <script src="{{ 'gift-guide.js' | asset_url }}" defer="defer"></script>
 

@@ -1,4 +1,9 @@
-{%- assign imgs = 'image822.png|image823.png|image824.png|image825.png|image826.png|image827.png' | split: '|' -%}
+{%- comment -%}
+  One shoppable gallery card.
+  Params: idx (0-5 hotspot position), prod (product object), mode ('desktop'|'mobile'),
+          def_desc (fallback description when the product has none).
+  Cards render ONLY real Shopify products — no fake/default products.
+{%- endcomment -%}
 {%- assign dhs = '256.5px,238px|355.5px,222px|261px,82px|301.5px,71px|212.5px,104px|319.5px,164px' | split: '|' -%}
 {%- assign mhs = '59.238%,53.604%|82.102%,50%|60.277%,18.468%|69.63%,15.991%|49.076%,23.423%|73.788%,36.937%' | split: '|' -%}
 {%- if mode == 'desktop' -%}
@@ -8,20 +13,13 @@
   {%- assign hs = mhs[idx] | split: ',' -%}
   {%- assign cls = 'm-card' -%}
 {%- endif -%}
-{%- if prod -%}
-  {%- assign cname = prod.title -%}
-  {%- assign cprice = prod.price | money -%}
-  {%- assign cdesc = prod.description | strip_html | truncate: 160 -%}
-{%- else -%}
-  {%- assign cname = def_name | default: 'Orange Wide Leg' -%}
-  {%- assign cprice = def_price | default: '980,00€' -%}
-  {%- assign cdesc = def_desc | default: 'This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.' -%}
-{%- endif -%}
-<div class="{{ cls }}" data-name="{{ cname | escape }}" data-price="{{ cprice | escape }}"{% if cdesc != blank %} data-desc="{{ cdesc | escape }}"{% endif %}>
-  {%- if prod and prod.featured_image -%}
+{%- assign cdesc = prod.description | strip_html | truncate: 160 -%}
+{%- if cdesc == blank -%}{%- assign cdesc = def_desc -%}{%- endif -%}
+<div class="{{ cls }}" data-name="{{ prod.title | escape }}" data-price="{{ prod.price | money | escape }}"{% if cdesc != blank %} data-desc="{{ cdesc | escape }}"{% endif %}>
+  {%- if prod.featured_image -%}
     {{ prod.featured_image | image_url: width: 900 | image_tag: class: 'photo', loading: 'lazy', alt: prod.featured_image.alt | default: prod.title }}
   {%- else -%}
-    <img class="photo" src="{{ imgs[idx] | asset_url }}" alt="{{ cname | escape }}" width="433" height="444" loading="lazy">
+    {{ 'product-1' | placeholder_svg_tag: 'photo' }}
   {%- endif -%}
   <button class="hotspot" style="left:{{ hs[0] }}; top:{{ hs[1] }};" aria-label="Quick view product"><img src="{{ 'hotspot-190.svg' | asset_url }}" alt=""></button>
 </div>

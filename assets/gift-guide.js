@@ -45,12 +45,17 @@
     var qv = $('#mQv'); if (qv) qv.classList.remove('open');
   });
 
-  /* ---------- color swatches ---------- */
+  /* ---------- color swatches: chosen one gets black background ---------- */
   on('#mQv .m-qv-colors button', function (btn) {
     btn.parentNode.querySelectorAll('button').forEach(function (x) {
-      x.style.boxShadow = 'inset 4px 0 0 #000';
+      x.classList.remove('sel');
     });
-    btn.style.boxShadow = 'inset 6px 0 0 #000';
+    btn.classList.add('sel');
+  });
+
+  /* ---------- click on the dark scrim closes the quick view ---------- */
+  on('#mQv', function (el, e) {
+    if (e.target === el) el.classList.remove('open');
   });
 
   /* ---------- size dropdown ---------- */
