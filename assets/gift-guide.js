@@ -1,54 +1,87 @@
-// ----- marquee content builders -----
-  // ----- mobile interactions: menu drawer + product quick view -----
-  var mMenu = document.getElementById('mMenu');
-  document.querySelector('#mobileView .m-menu').addEventListener('click', function () { mMenu.classList.add('open'); });
-  mMenu.querySelector('.m-close').addEventListener('click', function () { mMenu.classList.remove('open'); });
+/* Tisso Gift Guide — interactions.
+ * Vanilla JS written for Shopify theme-editor safety:
+ *  - strict IIFE, no globals leaked
+ *  - all clicks handled via document-level delegation, so the editor's
+ *    live section re-renders (HTML swapped without a page reload) never
+ *    orphan the handlers
+ *  - every lookup guarded, so templates without these elements (404,
+ *    future pages) never throw
+ *  - listens to Shopify's own section lifecycle event
+ */
+(function () {
+  'use strict';
 
-  var mQv = document.getElementById('mQv');
-  var mQvImg = document.getElementById('mQvImg');
-  document.querySelectorAll('#mobileView .m-card, #desktopView .card').forEach(function (card) {
-    card.addEventListener('click', function () {
-      var photo = card.querySelector('img.photo');
-      if (photo) mQvImg.src = photo.src;
-      if (card.dataset.name) mQv.querySelector('.m-qv-name').textContent = card.dataset.name;
-      if (card.dataset.price) mQv.querySelector('.m-qv-price').textContent = card.dataset.price;
-      if (card.dataset.desc) mQv.querySelector('.m-qv-desc').textContent = card.dataset.desc;
-      mQv.classList.add('open');
+  /* delegate clicks for a selector; handler gets the matched element */
+  function on(selector, handler) {
+    document.addEventListener('click', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest(selector) : null;
+      if (el) handler(el, e);
     });
-  });
-  mQv.querySelector('.m-close').addEventListener('click', function () { mQv.classList.remove('open'); });
-  mQv.querySelectorAll('.m-qv-colors button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      mQv.querySelectorAll('.m-qv-colors button').forEach(function (x) { x.style.boxShadow = 'inset 4px 0 0 #000'; });
-      b.style.boxShadow = 'inset 6px 0 0 #000';
-    });
-  });
+  }
 
-  var mSizeBtn = mQv.querySelector('.m-qv-size');
-  var mSizes = document.getElementById('mQvSizes');
-  mSizeBtn.addEventListener('click', function () { mSizes.classList.toggle('open'); });
-  mSizes.querySelectorAll('button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      mSizeBtn.querySelector('.txt').textContent = b.textContent;
-      mSizes.classList.remove('open');
-    });
+  function $(sel) { return document.querySelector(sel); }
+
+  /* ---------- menu drawer ---------- */
+  on('#mobileView .m-menu', function () {
+    var m = $('#mMenu'); if (m) m.classList.add('open');
+  });
+  on('#mMenu .m-close', function () {
+    var m = $('#mMenu'); if (m) m.classList.remove('open');
   });
 
-  // ----- fit the 1440px desktop design into the viewport -----
-  var stage = document.getElementById('stage');
-  var wrap = document.getElementById('fitwrap');
+  /* ---------- product quick view (cards in both views) ---------- */
+  on('#mobileView .m-card, #desktopView .card', function (card) {
+    var qv = $('#mQv');
+    if (!qv) return;
+    var img = $('#mQvImg');
+    var photo = card.querySelector('img.photo');
+    if (photo && img) img.src = photo.src;
+    if (card.dataset.name) { var n = qv.querySelector('.m-qv-name'); if (n) n.textContent = card.dataset.name; }
+    if (card.dataset.price) { var p = qv.querySelector('.m-qv-price'); if (p) p.textContent = card.dataset.price; }
+    if (card.dataset.desc) { var d = qv.querySelector('.m-qv-desc'); if (d) d.textContent = card.dataset.desc; }
+    qv.classList.add('open');
+  });
+  on('#mQv .m-close', function () {
+    var qv = $('#mQv'); if (qv) qv.classList.remove('open');
+  });
+
+  /* ---------- color swatches ---------- */
+  on('#mQv .m-qv-colors button', function (btn) {
+    btn.parentNode.querySelectorAll('button').forEach(function (x) {
+      x.style.boxShadow = 'inset 4px 0 0 #000';
+    });
+    btn.style.boxShadow = 'inset 6px 0 0 #000';
+  });
+
+  /* ---------- size dropdown ---------- */
+  on('#mQv .m-qv-size', function () {
+    var s = $('#mQvSizes'); if (s) s.classList.toggle('open');
+  });
+  on('#mQvSizes button', function (btn) {
+    var t = $('#mQv .m-qv-size .txt'); if (t) t.textContent = btn.textContent;
+    var s = $('#mQvSizes'); if (s) s.classList.remove('open');
+  });
+
+  /* ---------- fit the 1440px desktop stage into the viewport ---------- */
+  var stage = $('#stage');
+  var wrap = $('#fitwrap');
   var forceView = new URLSearchParams(location.search).get('view');
   if (forceView === 'mobile') document.documentElement.classList.add('force-mobile');
   if (forceView === 'desktop') document.documentElement.classList.add('force-desktop');
+
   function fit() {
-    if (forceView === 'mobile') return; // forced mobile view is fluid
-    if (!forceView && window.matchMedia('(max-width: 767.98px)').matches) return; // mobile view is fluid
-    var vw = document.documentElement.clientWidth;
-    var s = vw / 1440; // fill the full viewport width (scale up or down, no side margins)
+    if (!stage || !wrap) return;               /* template without the stage */
+    if (forceView === 'mobile') return;        /* forced mobile view is fluid */
+    if (!forceView && window.matchMedia('(max-width: 767.98px)').matches) return;
+    var s = document.documentElement.clientWidth / 1440;
     stage.style.transform = 'scale(' + s + ')';
     stage.style.marginLeft = '0px';
     wrap.style.height = Math.ceil(stage.scrollHeight * s) + 'px';
   }
+
   window.addEventListener('resize', fit);
   window.addEventListener('load', fit);
+  /* fired by the theme editor after it swaps in fresh section HTML */
+  document.addEventListener('shopify:section:load', fit);
   fit();
+})();

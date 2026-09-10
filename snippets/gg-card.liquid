@@ -19,9 +19,9 @@
 {%- endif -%}
 <div class="{{ cls }}" data-name="{{ cname | escape }}" data-price="{{ cprice | escape }}"{% if cdesc != blank %} data-desc="{{ cdesc | escape }}"{% endif %}>
   {%- if prod and prod.featured_image -%}
-    <img class="photo" src="{{ prod.featured_image | image_url: width: 900 }}" alt="{{ prod.title | escape }}" loading="lazy">
+    {{ prod.featured_image | image_url: width: 900 | image_tag: class: 'photo', loading: 'lazy', alt: prod.featured_image.alt | default: prod.title }}
   {%- else -%}
-    <img class="photo" src="{{ imgs[idx] | asset_url }}" alt="" loading="lazy">
+    <img class="photo" src="{{ imgs[idx] | asset_url }}" alt="{{ cname | escape }}" width="433" height="444" loading="lazy">
   {%- endif -%}
   <button class="hotspot" style="left:{{ hs[0] }}; top:{{ hs[1] }};" aria-label="Quick view product"><img src="{{ 'hotspot-190.svg' | asset_url }}" alt=""></button>
 </div>
