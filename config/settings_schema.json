@@ -1,29 +1,33 @@
 [
   {
-    "name": "Brand colors",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Brand colors"
-      },
-      {
-        "type": "color",
-        "id": "color_accent",
-        "label": "Accent (buttons, highlights)",
-        "default": "#fff544"
-      },
-      {
-        "type": "color",
-        "id": "color_ink",
-        "label": "Ink (text, dark buttons)",
-        "default": "#000000"
-      },
-      {
-        "type": "color",
-        "id": "color_bg",
-        "label": "Page background",
-        "default": "#ffffff"
-      }
-    ]
+    "type": "theme_info",
+    "name": "theme_info",
+    "theme_name": "Tisso Gift Guide",
+    "theme_version": "1.3.0",
+    "theme_author": "Arena",
+    "theme_documentation_url": "https://example.com/docs",
+    "theme_support_url": "https://example.com/support"
+  },
+  {
+    "type": "header",
+    "content": "Brand colors"
+  },
+  {
+    "type": "color",
+    "id": "color_accent",
+    "label": "Accent (buttons, highlights)",
+    "default": "#fff544"
+  },
+  {
+    "type": "color",
+    "id": "color_ink",
+    "label": "Ink (text, dark buttons)",
+    "default": "#000000"
+  },
+  {
+    "type": "color",
+    "id": "color_bg",
+    "label": "Page background",
+    "default": "#ffffff"
   }
 ]
