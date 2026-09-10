@@ -1,16 +1,7 @@
 {%- assign s = section.settings -%}
 {%- assign col = s.collection -%}
 {%- assign prods = col.products -%}
-{%- assign nav_tagline = s.nav_tagline | default: 'Find the ideal gift for your loved ones.' -%}
-{%- assign nav_button = s.nav_button | default: 'Choose Gift' -%}
-{%- assign heading = s.heading | default: 'The Gift Guide' -%}
-{%- assign subheading = s.subheading | default: 'Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.' -%}
-{%- assign hero_button = s.hero_button | default: 'Shop Now' -%}
-{%- assign sub_bar_text = s.sub_bar_text | default: 'SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL' -%}
-{%- assign wild_title = s.wild_title | default: 'Tisso vison in the wild' -%}
-{%- assign mobile_lede = s.mobile_lede | default: 'Discover Joy: Your Ultimate Holiday Gift Destination.' -%}
-{%- assign mobile_sus = s.mobile_sus | default: 'SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR' -%}
-{%- assign menu_brand = s.menu_brand | default: 'Tisso Vison' -%}
+
 {%- assign qv_color_label = s.qv_color_label | default: 'Color' -%}
 {%- assign qv_color_1 = s.qv_color_1 | default: 'White' -%}
 {%- assign qv_color_2 = s.qv_color_2 | default: 'Black' -%}
@@ -31,11 +22,11 @@
           <img class="logo-mark" src="{{ 'logo-mark.svg' | asset_url }}" alt="Tisso logo">
           <img class="logo-word" src="{{ 'logo-word.svg' | asset_url }}" alt="">
         </div>
-        <p class="nav-center">{{ nav_tagline }}</p>
+        <p class="nav-center">{{ section.settings.nav_tagline }}</p>
         <div class="nav-right">
-          <button class="cta cta--top cta--yellow cta--nav" type="button" aria-label="{{ nav_button | escape }}">
-            <span class="st st--yellow"><span class="lbl">{{ nav_button }}</span><img class="arr" src="{{ 'line17.svg' | asset_url }}" alt=""></span>
-            <span class="st st--dark"><span class="lbl">{{ nav_button }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
+          <button class="cta cta--top cta--yellow cta--nav" type="button" aria-label="{{ section.settings.nav_button | strip_html | escape }}">
+            <span class="st st--yellow"><span class="lbl">{{ section.settings.nav_button }}</span><img class="arr" src="{{ 'line17.svg' | asset_url }}" alt=""></span>
+            <span class="st st--dark"><span class="lbl">{{ section.settings.nav_button }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
           </button>
         </div>
       </div>
@@ -52,22 +43,22 @@
         {%- else -%}
           <img class="frame-b" src="{{ 'frame1.svg' | asset_url }}" alt="">
         {%- endif -%}
-        <h1>{{ heading }}</h1>
-        <p class="lede">{{ subheading }}</p>
-        <button class="cta cta--dark cta--hero" type="button" aria-label="{{ hero_button | escape }}">
-          <span class="st st--dark"><span class="lbl">{{ hero_button }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
-          <span class="st st--yellow"><span class="lbl">{{ hero_button }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+        <h1>{{ section.settings.heading }}</h1>
+        <p class="lede">{{ section.settings.subheading }}</p>
+        <button class="cta cta--dark cta--hero" type="button" aria-label="{{ section.settings.hero_button | strip_html | escape }}">
+          <span class="st st--dark"><span class="lbl">{{ section.settings.hero_button }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
+          <span class="st st--yellow"><span class="lbl">{{ section.settings.hero_button }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
         </button>
       </section>
 
       <!-- ============ sub bar: static centered text ============ -->
       <div class="bar bar--sub-static">
-        <p>{{ sub_bar_text }}</p>
+        <p>{{ section.settings.sub_bar_text }}</p>
       </div>
 
       <!-- ============ shoppable gallery ============ -->
       <section class="shop">
-        <h2>{{ wild_title }}</h2>
+        <h2>{{ section.settings.wild_title }}</h2>
         <div class="cards">
           {%- for idx in (0..5) -%}
             {%- render 'gg-card', idx: idx, prod: prods[idx], mode: 'desktop', def_name: def_name, def_price: def_price, def_desc: def_desc -%}
@@ -91,22 +82,22 @@
   </header>
 
   <main class="m-main">
-    <h1 class="m-title">{{ heading }}</h1>
-    <p class="m-lede">{{ mobile_lede }}</p>
+    <h1 class="m-title">{{ section.settings.heading }}</h1>
+    <p class="m-lede">{{ section.settings.mobile_lede }}</p>
     <div class="m-hero-img">
       {%- if s.hero_mobile_image -%}
         <img class="m-frame" src="{{ s.hero_mobile_image | image_url: width: 1125 }}" alt="" width="375" height="264">
       {%- else -%}
         <img class="m-frame" src="{{ 'hero-mobile.jpg' | asset_url }}" alt="">
       {%- endif -%}
-      <button class="cta cta--dark cta--m" type="button" aria-label="{{ hero_button | strip_html | escape }}">
-        <span class="st st--dark"><span class="lbl">{{ hero_button }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
-        <span class="st st--yellow"><span class="lbl">{{ hero_button }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+      <button class="cta cta--dark cta--m" type="button" aria-label="{{ section.settings.hero_button | strip_html | escape }}">
+        <span class="st st--dark"><span class="lbl">{{ section.settings.hero_button }}</span><img class="arr" src="{{ 'line16.svg' | asset_url }}" alt=""></span>
+        <span class="st st--yellow"><span class="lbl">{{ section.settings.hero_button }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
       </button>
     </div>
-    <p class="m-sus">{{ mobile_sus }}</p>
+    <p class="m-sus">{{ section.settings.mobile_sus }}</p>
 
-    <h2 class="m-tisso">{{ wild_title }}</h2>
+    <h2 class="m-tisso">{{ section.settings.wild_title }}</h2>
     <div class="m-cards">
       {%- for idx in (0..5) -%}
         {%- render 'gg-card', idx: idx, prod: prods[idx], mode: 'mobile', def_name: def_name, def_price: def_price, def_desc: def_desc -%}
@@ -119,12 +110,12 @@
   <div class="m-menu-panel" id="mMenu">
     <div class="m-menu-bar">
       <button class="m-close" type="button" aria-label="Close menu"><svg viewBox="0 0 22 22"><path d="M2 2 L20 20 M20 2 L2 20" stroke="#000" stroke-width="2" fill="none"/></svg></button>
-      <span class="m-menu-title">{{ menu_brand }}</span>
+      <span class="m-menu-title">{{ section.settings.menu_brand }}</span>
     </div>
     <div class="m-menu-body">
-      <p>{{ nav_tagline }}</p>
-      <button class="cta cta--yellow cta--menu" type="button" aria-label="{{ nav_button | escape }}">
-        <span class="st st--yellow"><span class="lbl">{{ nav_button }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
+      <p>{{ section.settings.nav_tagline }}</p>
+      <button class="cta cta--yellow cta--menu" type="button" aria-label="{{ section.settings.nav_button | strip_html | escape }}">
+        <span class="st st--yellow"><span class="lbl">{{ section.settings.nav_button }}</span><img class="arr" src="{{ 'line15.svg' | asset_url }}" alt=""></span>
       </button>
     </div>
   </div>
